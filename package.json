@@ -2,7 +2,8 @@
   "name": "window--xp",
   "version": "1.0.0",
   "scripts": {
-    "build": "sass scss/styles.scss css/styles.css"
+    "build": "sass scss/styles.scss:css/styles.css",
+    "watch:sass": "sass --watch scss/styles.scss:css/styles.css"
   },
   "devDependencies": {
     "sass": "^1.32.0"
