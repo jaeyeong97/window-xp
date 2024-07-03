@@ -9,9 +9,9 @@ export default function () {
     const areaSize = 500;
 
     const images = {
-        scissors: '../../img/scissors.png',
-        rock: '../../img/rock.png',
-        paper: '../../img/paper.png'
+        scissors: '../img/scissors.png',
+        rock: '../img/rock.png',
+        paper: '../img/paper.png'
     };
 
     const rspArr = ['scissors', 'rock', 'paper'];
