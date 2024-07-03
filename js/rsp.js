@@ -134,13 +134,13 @@ export default function () {
 
         // 하나의 타입만 남았는지 확인
         if (scissorsCount > 0 && rockCount === 0 && paperCount === 0) {
-            alert('scissors wins!');
+            alert('가위 승리!');
             resetGame();
         } else if (rockCount > 0 && scissorsCount === 0 && paperCount === 0) {
-            alert('rock wins!');
+            alert('바위 승리!');
             resetGame();
         } else if (paperCount > 0 && scissorsCount === 0 && rockCount === 0) {
-            alert('paper wins!');
+            alert('보 승리!');
             resetGame();
         }
     }
