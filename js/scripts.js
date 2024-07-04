@@ -4,11 +4,12 @@ const loadingScreen = document.querySelector('.loading-screen');
 const loginScreen = document.querySelector('.login-screen');
 const mainScreen = document.querySelector('.main-screen');
 
-setTimeout(function () {
-    loadingScreen.style.display = 'none';
-    loginScreen.style.display = 'block';
-    loginPassword1.focus();
-}, 5000);
+// 수정중
+// setTimeout(function () {
+//     loadingScreen.style.display = 'none';
+//     loginScreen.style.display = 'block';
+//     loginPassword1.focus();
+// }, 5000);
 
 // 로딩 화면 끝
 
@@ -321,10 +322,13 @@ const rspModal = document.querySelector('.rock-scissors-paper-modal');
 const rspFullScreenBtn = document.querySelector('.rock-scissors-paper-modal-header1-right-btn2');
 const rspCloseBtn = document.querySelector('.rock-scissors-paper-modal-header1-right-btn3');
 const rspHeader = document.querySelector('.rock-scissors-paper-modal-header1');
+const gameArea = document.querySelector('.game-area');
+const gameStartBtn = document.querySelector('.game-start');
 
 // 가위바위보 모달 열기
 rspIcon.addEventListener('dblclick', async function () {
-    rspModal.style.display = 'block';
+    rspModal.style.display = 'flex';
+    gameStartBtn.style.display = 'block';
     try {
         const module = await import('../js/rsp.js');
         module.default();
@@ -332,16 +336,19 @@ rspIcon.addEventListener('dblclick', async function () {
         console.error('가위바위보 스크립트 에러', error);
     }
 });
+// 가위바위보 모달 열기 끝
+// 가위바위보 모달 닫기
 rspCloseBtn.addEventListener('click', function () {
     rspModal.style.display = 'none';
+    gameArea.style.display = 'none';
 });
-// 가위바위보 모달 열기 끝
+// 가위바위보 모달 닫기 끝
 // 가위바위보 창 확대
 rspFullScreenBtn.addEventListener('click', function () {
-    fullScreenFunction(rspModal, 'rsp', '30px', '50px', '600px', '530px');
+    fullScreenFunction(rspModal, 'rsp', '30px', '50px', '600px', '629px');
 });
 rspHeader.addEventListener('dblclick', function () {
-    fullScreenFunction(rspModal, 'rsp', '30px', '50px', '600px', '530px');
+    fullScreenFunction(rspModal, 'rsp', '30px', '50px', '600px', '629px');
 });
 // 가위바위보 창 확대 끝
 

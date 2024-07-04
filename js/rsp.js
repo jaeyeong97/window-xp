@@ -1,9 +1,10 @@
-let intervalId;
+let running;
 
 export default function () {
 
     const gameArea = document.querySelector('.game-area');
     const rspModal = document.querySelector('.rock-scissors-paper-modal');
+    const gameStartBtn = document.querySelector('.game-start');
     const items = []; // 모든 아이템
     const itemSize = 50;
     const areaSize = 500;
@@ -16,9 +17,14 @@ export default function () {
 
     const rspArr = ['scissors', 'rock', 'paper'];
 
-    for (let i = 0; i < 10; i++) {
-        rspArr.forEach(rsp => createItem(rsp));
-    }
+    // 게임 시작 버튼
+    gameStartBtn.addEventListener('click', function () {
+        gameStartBtn.style.display = 'none';
+        gameArea.style.display = 'block';
+        for (let i = 0; i < 10; i++) {
+            rspArr.forEach(rsp => createItem(rsp));
+        }
+    });
 
     // 새로운 아이템 생성
     function createItem(rsp) {
@@ -155,9 +161,9 @@ export default function () {
     }
 
     // 0.1초마다 실행
-    intervalId = setInterval(() => {
+    running = setInterval(() => {
         if (rspModal.style.display === 'none') {
-            clearInterval(intervalId);
+            clearInterval(running);
             gameArea.innerHTML = '';
             items.length = 0;
             return;

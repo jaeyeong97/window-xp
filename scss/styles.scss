@@ -63,6 +63,8 @@ a {
 // 로딩 화면
 
 .loading-screen {
+  // 수정중 none
+  display: none;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -178,6 +180,8 @@ a {
 // 로그인 화면
 
 .login-screen {
+  // 수정중 none
+  display: none;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -455,7 +459,8 @@ a {
 // 메인 화면
 
 .main-screen {
-  display: none;
+  // 수정중 주석
+  // display: none;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -507,7 +512,7 @@ a {
     #235dd8,
     #1b47ad
   );
-  z-index: 10;
+  z-index: 100;
 }
 
 .start-menu {
@@ -1994,24 +1999,29 @@ a {
 }
 // 내 컴퓨터 모달 끝
 // 가위바위보 모달
-
 .rock-scissors-paper-modal {
   display: none;
   position: fixed;
   top: 30px;
   left: 50px;
-  width: 600px;
-  height: 530px;
+  width: 634.5px;
+  height: 620px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 14.5px;
   border-radius: 5px 5px 1px 1px;
   border-left: 3px solid rgb(8, 49, 217);
   border-right: 3px solid rgb(8, 49, 217);
   border-bottom: 3px solid rgb(8, 49, 217);
-  background-color: #fff;
+  background-color: #026409;
   .game-area {
+    display: none;
     position: relative;
     width: 500px;
     height: 500px;
-    background-color: #fff;
+    border: 2px solid #fff;
+    background-color: #026409;
     .item {
       position: absolute;
       width: 50px;
@@ -2030,8 +2040,20 @@ a {
       background-image: url("../img/paper.png");
     }
   }
+  .btn-wrap {
+    display: flex;
+    margin: 10px;
+    button {
+      border: 1px solid #fff;
+      padding: 2px 4px;
+      margin: 0 5px;
+    }
+  }
 }
 .rock-scissors-paper-modal-header1 {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: calc(100% + 4px);
   height: 29px;
   display: flex;
