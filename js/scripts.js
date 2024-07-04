@@ -336,8 +336,8 @@ const rspHeader = document.querySelector('.rock-scissors-paper-modal-header1');
 const gameArea = document.querySelector('.game-area');
 const gameStartBtn = document.querySelector('.game-start');
 
-// 가위바위보 모달 열기
-rspIcon.addEventListener('dblclick', async function () {
+// 가위바위보 스크립트 실행
+async function loadAndStartGame() {
     rspModal.style.display = 'flex';
     gameStartBtn.style.display = 'block';
     try {
@@ -346,7 +346,9 @@ rspIcon.addEventListener('dblclick', async function () {
     } catch (error) {
         console.error('가위바위보 스크립트 에러', error);
     }
-});
+}
+// 가위바위보 모달 열기
+rspIcon.addEventListener('dblclick', loadAndStartGame);
 // 가위바위보 모달 열기 끝
 // 가위바위보 모달 닫기
 rspCloseBtn.addEventListener('click', function () {
@@ -416,7 +418,6 @@ const turnOffComputer = document.querySelector('.turn-off-computer');
 const linkToInternet = document.querySelector('.main-internet-link');
 const linkToComputer = document.querySelectorAll('.main-computer-link');
 const linkToMemo = document.querySelector('.main-memo-link');
-const linkToRsp = document.querySelector('.main-rsp-link');
 
 // 시작메뉴 열기
 startMenu.addEventListener('click', function () {
@@ -468,12 +469,7 @@ linkToComputer.forEach((icon) => {
     });
 })
 //  내 컴퓨터 열기 끝
-// 가위바위보 열기
-linkToRsp.addEventListener('click', function () {
-    rspModal.style.display = 'flex';
-    startMenuModal.style.display = 'none';
-});
-// 가위바위보 열기 끝
+
 // 시작 메뉴 끝
 // 푸터 끝
 // 메인 화면 끝
