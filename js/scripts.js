@@ -4,12 +4,11 @@ const loadingScreen = document.querySelector('.loading-screen');
 const loginScreen = document.querySelector('.login-screen');
 const mainScreen = document.querySelector('.main-screen');
 
-// 수정중
-// setTimeout(function () {
-//     loadingScreen.style.display = 'none';
-//     loginScreen.style.display = 'block';
-//     loginPassword1.focus();
-// }, 5000);
+setTimeout(function () {
+    loadingScreen.style.display = 'none';
+    loginScreen.style.display = 'block';
+    loginPassword1.focus();
+}, 4000);
 
 // 로딩 화면 끝
 
@@ -100,10 +99,10 @@ const loginSuccessAnimation = () => {
 const icons = document.querySelectorAll('.icon');
 
 //아이콘 클릭 이벤트
-icons.forEach((icon) => {
+function addIconClickListener(icon) {
     icon.addEventListener('click', function (event) {
         event.stopPropagation();
-        icons.forEach(i => {
+        document.querySelectorAll('.icon').forEach(i => {
             i.querySelector('.icon-img').style.opacity = '1';
             i.querySelector('.icon-img').style.backgroundColor = '';
             i.querySelector('.icon-text').style.backgroundColor = '';
@@ -113,11 +112,13 @@ icons.forEach((icon) => {
         iconImg.style.opacity = '0.7';
         iconImg.style.backgroundColor = '#0B61FF';
         iconTxt.style.backgroundColor = '#0B61FF';
-    })
-})
+    });
+}
+
+document.querySelectorAll('.icon').forEach(addIconClickListener);
 
 document.addEventListener('click', () => {
-    icons.forEach(i => {
+    document.querySelectorAll('.icon').forEach(i => {
         i.querySelector('.icon-img').style.opacity = '1';
         i.querySelector('.icon-img').style.backgroundColor = '';
         i.querySelector('.icon-text').style.backgroundColor = '';
@@ -220,13 +221,19 @@ const memoCloseBtn = document.querySelector('.memo-modal-header1-right-btn3');
 const memoFullScreenBtn = document.querySelector('.memo-modal-header1-right-btn2');
 const memoHeader = document.querySelector('.memo-modal-header1');
 const memoExit = document.querySelector('.exit-memo');
+const saveMemo = document.querySelector('.save-memo');
+const textarea = document.querySelector('.textarea');
+const iconWrap = document.querySelector('.ms-icon-wrap');
+let num = 0;
 
 // 메모장 창 닫기
 memoCloseBtn.addEventListener('click', function () {
     memoModal.style.display = 'none';
+    textarea.value = '';
 });
 memoExit.addEventListener('click', function () {
     memoModal.style.display = 'none';
+    textarea.value = '';
 });
 // 메모장 창 닫기 끝
 
@@ -246,37 +253,41 @@ memoIcon.addEventListener('dblclick', function () {
 // 메모장 열기 끝
 
 // 메모장 저장
-// const saveMemo = document.querySelector('.save');
-// const textarea = document.querySelector('.textarea');
-// const iconWrap = document.querySelector('.icon-wrap');
+saveMemo.addEventListener('click', function () {
+    const memoText = textarea.value;
+    if (memoText !== '') {
+        num++;
+        const newIcon = document.createElement('div');
+        newIcon.classList.add('icon');
 
-// saveMemo.addEventListener('click', function () {
-//     const memoText = textarea.value;
+        const iconImg = document.createElement('img');
+        iconImg.src = '../img/notepad.png';
+        iconImg.alt = 'notepad-icon';
+        iconImg.classList.add('icon-img');
 
-//     if (memoText !== '') {
-//         const newIcon = document.createElement('div');
-//         newIcon.classList.add('icon');
+        const iconText = document.createElement('div');
+        iconText.classList.add('icon-text');
+        iconText.textContent = `제목 없음${num}`;
 
-//         const iconImg = document.createElement('img');
-//         iconImg.src = '../img/notepad.png';
-//         iconImg.alt = 'notepad-icon';
-//         iconImg.classList.add('icon-img');
+        newIcon.appendChild(iconImg);
+        newIcon.appendChild(iconText);
 
-//         const iconText = document.createElement('div');
-//         iconText.classList.add('icon-text');
-//         iconText.textContent = memoText;
+        iconWrap.appendChild(newIcon);
 
-//         newIcon.appendChild(iconImg);
-//         newIcon.appendChild(iconText);
+        textarea.value = '';
+        alert('메모가 저장되었습니다.');
 
-//         iconWrap.appendChild(newIcon);
+        memoModal.style.display = 'none';
 
-//         textarea.value = '';
-//         alert('메모가 저장되었습니다.');
-//     } else {
-//         alert('메모를 입력해주세요.');
-//     }
-// });
+        newIcon.addEventListener('dblclick', function () {
+            memoModal.style.display = 'block';
+            textarea.value = memoText;
+        });
+        addIconClickListener(newIcon);
+    } else {
+        alert('메모를 입력해주세요.');
+    }
+});
 // 메모장 저장 끝
 
 addDragFunctionality(memoModal, memoHeader);
@@ -403,8 +414,9 @@ const logOffModal = document.querySelector('.log-off-modal');
 const logOffModalCancel = document.querySelector('.cancel');
 const turnOffComputer = document.querySelector('.turn-off-computer');
 const linkToInternet = document.querySelector('.main-internet-link');
-const linkToComputer = document.querySelector('.main-computer-link');
+const linkToComputer = document.querySelectorAll('.main-computer-link');
 const linkToMemo = document.querySelector('.main-memo-link');
+const linkToRsp = document.querySelector('.main-rsp-link');
 
 // 시작메뉴 열기
 startMenu.addEventListener('click', function () {
@@ -449,12 +461,19 @@ linkToMemo.addEventListener('click', function () {
 });
 // 메모장 열기 끝
 //  내 컴퓨터 열기
-linkToComputer.addEventListener('click', function () {
-    myComputerModal.style.display = 'block';
+linkToComputer.forEach((icon) => {
+    icon.addEventListener('click', function () {
+        myComputerModal.style.display = 'block';
+        startMenuModal.style.display = 'none';
+    });
+})
+//  내 컴퓨터 열기 끝
+// 가위바위보 열기
+linkToRsp.addEventListener('click', function () {
+    rspModal.style.display = 'flex';
     startMenuModal.style.display = 'none';
 });
-//  내 컴퓨터 열기 끝
-
+// 가위바위보 열기 끝
 // 시작 메뉴 끝
 // 푸터 끝
 // 메인 화면 끝

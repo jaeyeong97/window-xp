@@ -63,8 +63,6 @@ a {
 // 로딩 화면
 
 .loading-screen {
-  // 수정중 none
-  display: none;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -180,8 +178,6 @@ a {
 // 로그인 화면
 
 .login-screen {
-  // 수정중 none
-  display: none;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -459,8 +455,7 @@ a {
 // 메인 화면
 
 .main-screen {
-  // 수정중 주석
-  // display: none;
+  display: none;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -473,12 +468,17 @@ a {
 .icon-wrap {
   position: absolute;
   top: 30px;
+  bottom: 30px;
   left: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   .icon {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 30px;
+    margin-right: 10px;
     img {
       width: 32px;
       height: 32px;
@@ -652,9 +652,10 @@ a {
     .menu {
       display: flex;
       align-items: center;
-      margin: 3px 0;
       padding: 5px;
       .menu-img {
+        width: 32px;
+        height: 32px;
         margin-right: 5px;
       }
     }
