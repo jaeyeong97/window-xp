@@ -21,6 +21,18 @@ $bar-text-hover-color: rgb(22, 96, 232);
   }
 }
 
+@keyframes shaking {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-25deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(25deg) scale(1.1);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -60,7 +72,10 @@ a {
 .toGrayAnimation {
   animation: grayFilter 1s linear forwards;
 }
-// 로딩 화면
+.shaking {
+  animation: shaking 1s ease-in-out infinite alternate;
+}
+// 로딩 화면loading-screen
 
 .loading-screen {
   position: relative;
@@ -871,14 +886,10 @@ a {
 }
 // 시스템 종료 모달 끝
 
-// 인터넷 창 모달
-.internet-modal {
+// 모달 헤더 공통
+.modal-common {
   display: none;
   position: fixed;
-  top: 70px;
-  left: 120px;
-  width: 700px;
-  height: 500px;
   border-radius: 5px 5px 1px 1px;
   border-left: 3px solid rgb(8, 49, 217);
   border-right: 3px solid rgb(8, 49, 217);
@@ -886,7 +897,7 @@ a {
   background-color: #fff;
 }
 
-.internet-modal-header1 {
+.modal-common-header1 {
   width: calc(100% + 4px);
   height: 29px;
   display: flex;
@@ -911,7 +922,7 @@ a {
     rgb(0, 64, 171) 94%,
     rgb(0, 48, 146) 100%
   );
-  .internet-modal-header1-left {
+  .modal-common-header1-left {
     display: flex;
     align-items: center;
     margin-left: 3px;
@@ -925,7 +936,7 @@ a {
       font-weight: 600;
     }
   }
-  .internet-modal-header1-right {
+  .modal-common-header1-right {
     display: flex;
     align-items: center;
     margin-right: 3px;
@@ -953,7 +964,7 @@ a {
         filter: brightness(90%);
       }
     }
-    .internet-modal-header1-right-btn1::before {
+    .modal-common-header1-right-btn1::before {
       content: "";
       position: absolute;
       left: 5px;
@@ -962,7 +973,7 @@ a {
       width: 8px;
       background-color: #fff;
     }
-    .internet-modal-header1-right-btn2::before {
+    .modal-common-header1-right-btn2::before {
       content: "";
       position: absolute;
       display: block;
@@ -972,7 +983,7 @@ a {
       height: 12px;
       width: 12px;
     }
-    .internet-modal-header1-right-btn3 {
+    .modal-common-header1-right-btn3 {
       box-shadow: rgb(218, 70, 0) 0px -1px 2px 1px inset;
       background-image: radial-gradient(
         circle at 90% 90%,
@@ -1004,6 +1015,14 @@ a {
       }
     }
   }
+}
+// 모달 공통 끝
+// 인터넷 창 모달
+.internet-modal {
+  top: 70px;
+  left: 120px;
+  width: 700px;
+  height: 500px;
 }
 
 .internet-modal-header2 {
@@ -1311,137 +1330,11 @@ a {
 
 // 메모장 모달
 .memo-modal {
-  display: none;
-  position: fixed;
   top: 100px;
   left: 150px;
   width: 400px;
   height: 370px;
-  border-radius: 5px 5px 1px 1px;
-  border-left: 3px solid rgb(8, 49, 217);
-  border-right: 3px solid rgb(8, 49, 217);
-  border-bottom: 3px solid rgb(8, 49, 217);
-  background-color: #fff;
 }
-.memo-modal-header1 {
-  width: calc(100% + 4px);
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 3px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  transform: translateX(-2px);
-  background: linear-gradient(
-    rgb(0, 88, 238) 0%,
-    rgb(53, 147, 255) 4%,
-    rgb(40, 142, 255) 6%,
-    rgb(18, 125, 255) 8%,
-    rgb(3, 111, 252) 10%,
-    rgb(2, 98, 238) 14%,
-    rgb(0, 87, 229) 20%,
-    rgb(0, 84, 227) 24%,
-    rgb(0, 85, 235) 56%,
-    rgb(0, 91, 245) 66%,
-    rgb(2, 106, 254) 76%,
-    rgb(0, 98, 239) 86%,
-    rgb(0, 82, 214) 92%,
-    rgb(0, 64, 171) 94%,
-    rgb(0, 48, 146) 100%
-  );
-  .memo-modal-header1-left {
-    display: flex;
-    align-items: center;
-    img {
-      width: 15px;
-      height: 15px;
-      margin-right: 2px;
-    }
-    span {
-      font-size: 12px;
-      font-weight: 600;
-    }
-  }
-  .memo-modal-header1-right {
-    display: flex;
-    .btn {
-      position: relative;
-      width: 21px;
-      height: 21px;
-      margin-right: 1px;
-      cursor: pointer;
-      border: 1px solid #fff;
-      border-radius: 3px;
-      box-shadow: rgb(70, 70, 255) 0px -1px 2px 1px inset;
-      background-image: radial-gradient(
-        circle at 90% 90%,
-        rgb(0, 84, 233) 0%,
-        rgb(34, 99, 213) 55%,
-        rgb(68, 121, 228) 70%,
-        rgb(163, 187, 236) 90%,
-        #fff 100%
-      );
-      &:hover {
-        filter: brightness(120%);
-      }
-      &:active {
-        filter: brightness(90%);
-      }
-    }
-    .memo-modal-header1-right-btn1::before {
-      content: "";
-      position: absolute;
-      left: 5px;
-      top: 13px;
-      height: 3px;
-      width: 8px;
-      background-color: #fff;
-    }
-    .memo-modal-header1-right-btn2::before {
-      content: "";
-      position: absolute;
-      display: block;
-      left: 4.5px;
-      top: 4px;
-      box-shadow: #fff 0px 3px inset, #fff 0px 0px 0px 1px inset;
-      height: 12px;
-      width: 12px;
-    }
-    .memo-modal-header1-right-btn3 {
-      box-shadow: rgb(218, 70, 0) 0px -1px 2px 1px inset;
-      background-image: radial-gradient(
-        circle at 90% 90%,
-        rgb(204, 70, 0) 0%,
-        rgb(220, 101, 39) 55%,
-        rgb(205, 117, 70) 70%,
-        rgb(255, 204, 178) 90%,
-        white 100%
-      );
-      &::before {
-        content: "";
-        position: absolute;
-        left: 9.5px;
-        top: 2.5px;
-        transform: rotate(-45deg);
-        height: 16px;
-        width: 2px;
-        background-color: #fff;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        left: 9.5px;
-        top: 2.5px;
-        transform: rotate(45deg);
-        height: 16px;
-        width: 2px;
-        background-color: #fff;
-      }
-    }
-  }
-}
-
 .memo-modal-header2 {
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -1519,140 +1412,11 @@ a {
 
 // 내 컴퓨터 모달
 .my-computer-modal {
-  display: none;
-  position: fixed;
   top: 30px;
   left: 50px;
   width: 600px;
   height: 530px;
-  border-radius: 5px 5px 1px 1px;
-  border-left: 3px solid rgb(8, 49, 217);
-  border-right: 3px solid rgb(8, 49, 217);
-  border-bottom: 3px solid rgb(8, 49, 217);
-  background-color: #fff;
 }
-
-.my-computer-modal-header1 {
-  width: calc(100% + 4px);
-  height: 29px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 5px;
-  transform: translateX(-2px);
-  background: linear-gradient(
-    rgb(0, 88, 238) 0%,
-    rgb(53, 147, 255) 4%,
-    rgb(40, 142, 255) 6%,
-    rgb(18, 125, 255) 8%,
-    rgb(3, 111, 252) 10%,
-    rgb(2, 98, 238) 14%,
-    rgb(0, 87, 229) 20%,
-    rgb(0, 84, 227) 24%,
-    rgb(0, 85, 235) 56%,
-    rgb(0, 91, 245) 66%,
-    rgb(2, 106, 254) 76%,
-    rgb(0, 98, 239) 86%,
-    rgb(0, 82, 214) 92%,
-    rgb(0, 64, 171) 94%,
-    rgb(0, 48, 146) 100%
-  );
-  .my-computer-modal-header1-left {
-    display: flex;
-    align-items: center;
-    margin-left: 5px;
-    img {
-      width: 15px;
-      height: 15px;
-      margin-right: 3px;
-      margin-top: 2px;
-    }
-    span {
-      font-size: 13px;
-      font-weight: 600;
-    }
-  }
-  .my-computer-modal-header1-right {
-    display: flex;
-    align-items: center;
-    margin-right: 3px;
-    .btn {
-      position: relative;
-      width: 21px;
-      height: 21px;
-      margin-right: 1px;
-      cursor: pointer;
-      border: 1px solid #fff;
-      border-radius: 3px;
-      box-shadow: rgb(70, 70, 255) 0px -1px 2px 1px inset;
-      background-image: radial-gradient(
-        circle at 90% 90%,
-        rgb(0, 84, 233) 0%,
-        rgb(34, 99, 213) 55%,
-        rgb(68, 121, 228) 70%,
-        rgb(163, 187, 236) 90%,
-        #fff 100%
-      );
-      &:hover {
-        filter: brightness(120%);
-      }
-      &:active {
-        filter: brightness(90%);
-      }
-    }
-    .my-computer-modal-header1-right-btn1::before {
-      content: "";
-      position: absolute;
-      left: 5px;
-      top: 13px;
-      height: 3px;
-      width: 8px;
-      background-color: #fff;
-    }
-    .my-computer-modal-header1-right-btn2::before {
-      content: "";
-      position: absolute;
-      display: block;
-      left: 4.5px;
-      top: 4px;
-      box-shadow: #fff 0px 3px inset, #fff 0px 0px 0px 1px inset;
-      height: 12px;
-      width: 12px;
-    }
-    .my-computer-modal-header1-right-btn3 {
-      box-shadow: rgb(218, 70, 0) 0px -1px 2px 1px inset;
-      background-image: radial-gradient(
-        circle at 90% 90%,
-        rgb(204, 70, 0) 0%,
-        rgb(220, 101, 39) 55%,
-        rgb(205, 117, 70) 70%,
-        rgb(255, 204, 178) 90%,
-        white 100%
-      );
-      &::before {
-        content: "";
-        position: absolute;
-        left: 9.5px;
-        top: 2.5px;
-        transform: rotate(-45deg);
-        height: 16px;
-        width: 2px;
-        background-color: #fff;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        left: 9.5px;
-        top: 2.5px;
-        transform: rotate(45deg);
-        height: 16px;
-        width: 2px;
-        background-color: #fff;
-      }
-    }
-  }
-}
-
 .my-computer-modal-header2 {
   width: 100%;
   display: flex;
@@ -2001,8 +1765,6 @@ a {
 // 내 컴퓨터 모달 끝
 // 가위바위보 모달
 .rock-scissors-paper-modal {
-  display: none;
-  position: fixed;
   top: 30px;
   left: 50px;
   width: 634.5px;
@@ -2010,11 +1772,6 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 14.5px;
-  border-radius: 5px 5px 1px 1px;
-  border-left: 3px solid rgb(8, 49, 217);
-  border-right: 3px solid rgb(8, 49, 217);
-  border-bottom: 3px solid rgb(8, 49, 217);
   background-color: #026409;
   .game-area {
     display: none;
@@ -2041,13 +1798,54 @@ a {
       background-image: url("../img/paper.png");
     }
   }
-  .btn-wrap {
+  .game-before-start-wrap {
+    position: relative;
     display: flex;
-    margin: 10px;
-    button {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .winner-text {
+      position: absolute;
+      top: -70px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .img-wrap {
+      display: flex;
+      .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 25px;
+        img {
+          width: 70px;
+          height: 70px;
+        }
+        span {
+          font-size: 25px;
+          font-weight: 600;
+          margin-top: 10px;
+        }
+      }
+    }
+    .game-start {
+      width: 100px;
+      height: 70px;
+      margin-top: 50px;
       border: 1px solid #fff;
-      padding: 2px 4px;
-      margin: 0 5px;
+      border-radius: 50%;
+      box-shadow: 0 8px gray;
+      background-color: red;
+      transition: 0.1s;
+      font-size: 16px;
+      font-weight: 600;
+      &:active {
+        box-shadow: 0 3px gray, inset 3px 3px #7c7c7c93;
+        transform: translateY(5px);
+      }
     }
   }
 }
@@ -2055,126 +1853,201 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(100% + 4px);
-  height: 29px;
+}
+// 가위바위보 모달 끝
+// 퀴즈 모달
+.quiz-modal {
+  top: 70px;
+  left: 120px;
+  width: 550px;
+  height: 600px;
+}
+.quiz-main {
+  width: 100%;
+  height: calc(100% - 29px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-radius: 5px;
-  transform: translateX(-2px);
-  background: linear-gradient(
-    rgb(0, 88, 238) 0%,
-    rgb(53, 147, 255) 4%,
-    rgb(40, 142, 255) 6%,
-    rgb(18, 125, 255) 8%,
-    rgb(3, 111, 252) 10%,
-    rgb(2, 98, 238) 14%,
-    rgb(0, 87, 229) 20%,
-    rgb(0, 84, 227) 24%,
-    rgb(0, 85, 235) 56%,
-    rgb(0, 91, 245) 66%,
-    rgb(2, 106, 254) 76%,
-    rgb(0, 98, 239) 86%,
-    rgb(0, 82, 214) 92%,
-    rgb(0, 64, 171) 94%,
-    rgb(0, 48, 146) 100%
-  );
-  .rock-scissors-paper-modal-header1-left {
-    display: flex;
-    align-items: center;
-    margin-left: 5px;
-    img {
-      width: 15px;
-      height: 15px;
-      margin-right: 3px;
-      margin-top: 2px;
-    }
-    span {
-      font-size: 13px;
-      font-weight: 600;
-    }
-  }
-  .rock-scissors-paper-modal-header1-right {
-    display: flex;
-    align-items: center;
-    margin-right: 3px;
-    .btn {
-      position: relative;
-      width: 21px;
-      height: 21px;
-      margin-right: 1px;
-      cursor: pointer;
-      border: 1px solid #fff;
-      border-radius: 3px;
-      box-shadow: rgb(70, 70, 255) 0px -1px 2px 1px inset;
-      background-image: radial-gradient(
-        circle at 90% 90%,
-        rgb(0, 84, 233) 0%,
-        rgb(34, 99, 213) 55%,
-        rgb(68, 121, 228) 70%,
-        rgb(163, 187, 236) 90%,
-        #fff 100%
-      );
-      &:hover {
-        filter: brightness(120%);
-      }
-      &:active {
-        filter: brightness(90%);
-      }
-    }
-    .rock-scissors-paper-modal-header1-right-btn1::before {
-      content: "";
-      position: absolute;
-      left: 5px;
-      top: 13px;
-      height: 3px;
-      width: 8px;
-      background-color: #fff;
-    }
-    .rock-scissors-paper-modal-header1-right-btn2::before {
-      content: "";
-      position: absolute;
-      display: block;
-      left: 4.5px;
-      top: 4px;
-      box-shadow: #fff 0px 3px inset, #fff 0px 0px 0px 1px inset;
-      height: 12px;
-      width: 12px;
-    }
-    .rock-scissors-paper-modal-header1-right-btn3 {
-      box-shadow: rgb(218, 70, 0) 0px -1px 2px 1px inset;
-      background-image: radial-gradient(
-        circle at 90% 90%,
-        rgb(204, 70, 0) 0%,
-        rgb(220, 101, 39) 55%,
-        rgb(205, 117, 70) 70%,
-        rgb(255, 204, 178) 90%,
-        white 100%
-      );
-      &::before {
-        content: "";
-        position: absolute;
-        left: 9.5px;
-        top: 2.5px;
-        transform: rotate(-45deg);
-        height: 16px;
-        width: 2px;
-        background-color: #fff;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        left: 9.5px;
-        top: 2.5px;
-        transform: rotate(45deg);
-        height: 16px;
-        width: 2px;
-        background-color: #fff;
-      }
+  justify-content: center;
+  background-color: #fff;
+  color: #000;
+  font-size: 12px;
+}
+.quiz-start-btn-wrap {
+  display: flex;
+  align-items: center;
+  .quiz-start-btn {
+    padding: 5px 8px;
+    margin: 0 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #5388f8;
+    border: 2px solid #5388f8;
+    border-radius: 5px;
+    &:active {
+      filter: brightness(70%);
     }
   }
 }
-// 가위바위보 모달 끝
+.quiz-main-in {
+  display: none;
+  width: 450px;
+  height: 550px;
+  border: 1px solid #000;
+  background-color: #fff;
+  .o,
+  .x {
+    display: none;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+  .quiz-top-menu {
+    display: flex;
+    justify-content: center;
+    width: 390px;
+    margin: 10px auto 0 auto;
+    border-radius: 5px;
+    overflow: hidden;
+    .menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 130px;
+      height: 60px;
+      background-color: #eef5ff;
+      span {
+        color: rgba(0, 0, 0, 0.5);
+      }
+      .left-num,
+      .correct-num,
+      .incorrect-num {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+    .menu-center {
+      position: relative;
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 2px;
+        height: 35px;
+        border-radius: 20px;
+        background-color: #dbdee8;
+      }
+      &::before {
+        left: 0;
+      }
+      &::after {
+        right: 0;
+      }
+    }
+  }
+  .timer-wrap {
+    display: flex;
+    align-items: center;
+    margin: 10px 30px;
+    span {
+      width: 18%;
+      color: #7b92cf;
+      font-weight: 600;
+    }
+    .timer-bar {
+      position: relative;
+      width: 100%;
+      height: 15px;
+      border-radius: 30px;
+      background-color: #e3e9fe;
+      .timer-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: #5388f8;
+        border-radius: 30px;
+        width: 100%;
+        transition: width 1s linear;
+      }
+    }
+  }
+  .question {
+    position: relative;
+    width: calc(100% - 60px);
+    height: 40%;
+    margin: 0 auto;
+    .question-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+  .btn-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .quiz-btn {
+      width: 390px;
+      height: 65px;
+      background-color: #5388f8;
+      border-radius: 10px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .quiz-btn.correct {
+      background-color: blue;
+    }
+    .quiz-btn.incorrect {
+      background-color: red;
+    }
+  }
+}
+.quiz-results {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: none;
+  h2 {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 120px;
+  }
+  .quiz-results-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    .fc {
+      display: flex;
+      flex-direction: column;
+      margin: 0 15px;
+      span {
+        font-size: 16px;
+      }
+    }
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .quiz-restart-btn {
+    width: 195.94px;
+    height: 55px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #5388f8;
+  }
+}
+// 퀴즈 모달 끝
 // 메인 화면 끝
 
 @media screen and (max-width: 768px) {

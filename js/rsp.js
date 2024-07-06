@@ -5,6 +5,10 @@ export default function () {
     const gameArea = document.querySelector('.game-area');
     const rspModal = document.querySelector('.rock-scissors-paper-modal');
     const gameStartBtn = document.querySelector('.game-start');
+    const beforeGameScreen = document.querySelector('.game-before-start-wrap');
+    const scissors = document.querySelector('.scissors-img');
+    const rock = document.querySelector('.rock-img');
+    const paper = document.querySelector('.paper-img');
     const items = []; // 모든 아이템
     const itemSize = 50;
     const areaSize = 500;
@@ -19,8 +23,15 @@ export default function () {
 
     // 게임 시작 버튼
     gameStartBtn.addEventListener('click', function () {
-        gameStartBtn.style.display = 'none';
+        beforeGameScreen.style.display = 'none';
         gameArea.style.display = 'block';
+        if (scissors.classList.contains('shaking')) {
+            scissors.classList.remove('shaking');
+        } else if (rock.classList.contains('shaking')) {
+            rock.classList.remove('shaking');
+        } else if (paper.classList.contains('shaking')) {
+            paper.classList.remove('shaking');
+        }
         for (let i = 0; i < 10; i++) {
             rspArr.forEach(rsp => createItem(rsp));
         }
@@ -43,8 +54,8 @@ export default function () {
         items.forEach(item => {
             const top = parseFloat(item.style.top);
             const left = parseFloat(item.style.left);
-            let newTop = top + (Math.random() - 0.5) * 30; // 위아래 15px씩
-            let newLeft = left + (Math.random() - 0.5) * 30; // 좌우 15px씩
+            let newTop = top + (Math.random() - 0.5) * 40; // 위아래 20px씩
+            let newLeft = left + (Math.random() - 0.5) * 40; // 좌우 20px씩
             // 이동 위치가 게임영역 벗어나지않게
             if (newTop < 0) {
                 newTop = 0;
@@ -140,25 +151,33 @@ export default function () {
 
         // 하나의 타입만 남았는지 확인
         if (scissorsCount > 0 && rockCount === 0 && paperCount === 0) {
-            alert('가위 승리!');
-            resetGame();
+            resetGame('가위');
         } else if (rockCount > 0 && scissorsCount === 0 && paperCount === 0) {
-            alert('바위 승리!');
-            resetGame();
+            resetGame('바위');
         } else if (paperCount > 0 && scissorsCount === 0 && rockCount === 0) {
-            alert('보 승리!');
-            resetGame();
+            resetGame('보');
         }
     }
 
     // 게임을 초기화하는 함수
-    function resetGame() {
-        gameArea.innerHTML = ''; // 게임 영역을 비움
-        items.length = 0; // 아이템 배열을 초기화
-        for (let i = 0; i < 10; i++) { // 새로운 아이템 생성
-            rspArr.forEach(rsp => createItem(rsp));
+    function resetGame(winner) {
+        const winnerText = document.querySelector('.winner-text');
+        gameArea.innerHTML = '';
+        items.length = 0;
+        gameArea.style.display = 'none';
+        winnerText.style.display = 'block';
+        if (winner === '가위') {
+            winnerText.textContent = '가위 승리!';
+            scissors.classList.add('shaking');
+        } else if (winner === '바위') {
+            winnerText.textContent = '바위 승리!';
+            rock.classList.add('shaking');
+        } else if (winner === '보') {
+            winnerText.textContent = '보 승리!';
+            paper.classList.add('shaking');
         }
-    }
+        beforeGameScreen.style.display = 'flex';
+    };
 
     // 0.1초마다 실행
     running = setInterval(() => {

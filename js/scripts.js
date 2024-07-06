@@ -11,7 +11,6 @@ setTimeout(function () {
 }, 4000);
 
 // 로딩 화면 끝
-
 // 로그인 화면
 
 const user = document.querySelectorAll('.back-gradient');
@@ -90,10 +89,7 @@ const loginSuccessAnimation = () => {
 
     welcome.style.display = 'block';
 };
-// 로그인 성공 애니메이션 끝
-
 // 로그인 화면 끝
-
 // 메인 화면
 
 const icons = document.querySelectorAll('.icon');
@@ -124,7 +120,6 @@ document.addEventListener('click', () => {
         i.querySelector('.icon-text').style.backgroundColor = '';
     });
 });
-//아이콘 클릭 이벤트 끝
 
 // 창 띄우기 공통
 const fullScreenStates = {
@@ -132,6 +127,7 @@ const fullScreenStates = {
     memo: false,
     myComputer: false,
     rsp: false,
+    quiz: false,
 };
 
 const fullScreenFunction = (modal, modalName, defaultTop, defaultLeft, defaultWidth, defaultHeight) => {
@@ -149,7 +145,6 @@ const fullScreenFunction = (modal, modalName, defaultTop, defaultLeft, defaultWi
         fullScreenStates[modalName] = false;
     }
 };
-// 창 띄우기 공통 끝
 
 // 모달 창 드레그 공통
 const addDragFunctionality = (modal, header) => {
@@ -176,8 +171,6 @@ const addDragFunctionality = (modal, header) => {
         isDragging = false;
     });
 };
-// 모달 창 드레그 공통 끝
-
 
 // 인터넷 모달 관련
 const memoIcon = document.querySelector('.memo-icon');
@@ -192,7 +185,6 @@ const internetExit = document.querySelector('.exit-internet');
 internetIcon.addEventListener('dblclick', function () {
     internetModal.style.display = 'block';
 });
-// 인터넷 창 띄우기 끝
 
 // 인터넷 창 닫기
 internetCloseBtn.addEventListener('click', function () {
@@ -201,7 +193,6 @@ internetCloseBtn.addEventListener('click', function () {
 internetExit.addEventListener('click', function () {
     internetModal.style.display = 'none';
 });
-// 인터넷 창 닫기 끝
 
 // 인터넷 창 확대 
 internetFullScreenBtn.addEventListener('click', function () {
@@ -210,10 +201,8 @@ internetFullScreenBtn.addEventListener('click', function () {
 internetHeader.addEventListener('dblclick', function () {
     fullScreenFunction(internetModal, 'internet', '70px', '120px', '700px', '500px');
 });
-// 인터넷 창 확대 끝
 
 addDragFunctionality(internetModal, internetHeader);
-// 인터넷 모달 관련 끝
 
 // 메모장 모달 관련
 const memoModal = document.querySelector('.memo-modal');
@@ -235,7 +224,6 @@ memoExit.addEventListener('click', function () {
     memoModal.style.display = 'none';
     textarea.value = '';
 });
-// 메모장 창 닫기 끝
 
 // 메모장 창 확대
 memoFullScreenBtn.addEventListener('click', function () {
@@ -244,13 +232,11 @@ memoFullScreenBtn.addEventListener('click', function () {
 memoHeader.addEventListener('dblclick', function () {
     fullScreenFunction(memoModal, 'memo', '100px', '150px', '400px', '370px');
 });
-// 메모장 창 확대 끝
 
 // 메모장 열기
 memoIcon.addEventListener('dblclick', function () {
     memoModal.style.display = 'block';
 });
-// 메모장 열기 끝
 
 // 메모장 저장
 saveMemo.addEventListener('click', function () {
@@ -288,10 +274,8 @@ saveMemo.addEventListener('click', function () {
         alert('메모를 입력해주세요.');
     }
 });
-// 메모장 저장 끝
 
 addDragFunctionality(memoModal, memoHeader);
-// 메모장 모달 관련 끝
 
 // 내 컴퓨터 모달 관련
 const myComputerModal = document.querySelector('.my-computer-modal');
@@ -305,7 +289,6 @@ const myComputerExit = document.querySelector('.exit-my-computer');
 myComputerIcon.addEventListener('dblclick', function () {
     myComputerModal.style.display = 'block';
 });
-// 내 컴퓨터 창 열기 끝
 // 내 컴퓨터 창 닫기
 myComputerCloseBtn.addEventListener('click', function () {
     myComputerModal.style.display = 'none';
@@ -313,7 +296,6 @@ myComputerCloseBtn.addEventListener('click', function () {
 myComputerExit.addEventListener('click', function () {
     myComputerModal.style.display = 'none';
 });
-// 내 컴퓨터 창 닫기 끝
 
 // 내 컴퓨터 창 확대
 myComputerFullScreenBtn.addEventListener('click', function () {
@@ -322,10 +304,8 @@ myComputerFullScreenBtn.addEventListener('click', function () {
 myComputerHeader.addEventListener('dblclick', function () {
     fullScreenFunction(myComputerModal, 'myComputer', '30px', '50px', '600px', '530px');
 });
-// 내 컴퓨터 창 확대 끝
 
 addDragFunctionality(myComputerModal, myComputerHeader);
-// 내 컴퓨터 모달 관련 끝
 
 // 가위바위보 모달 관련
 const rspIcon = document.querySelector('.rsp-icon');
@@ -335,11 +315,16 @@ const rspCloseBtn = document.querySelector('.rock-scissors-paper-modal-header1-r
 const rspHeader = document.querySelector('.rock-scissors-paper-modal-header1');
 const gameArea = document.querySelector('.game-area');
 const gameStartBtn = document.querySelector('.game-start');
+const beforeGameScreen = document.querySelector('.game-before-start-wrap');
+const scissors = document.querySelector('.scissors-img');
+const rock = document.querySelector('.rock-img');
+const paper = document.querySelector('.paper-img');
+const winnerText = document.querySelector('.winner-text');
 
 // 가위바위보 스크립트 실행
 async function loadAndStartGame() {
     rspModal.style.display = 'flex';
-    gameStartBtn.style.display = 'block';
+    beforeGameScreen.style.display = 'flex';
     try {
         const module = await import('../js/rsp.js');
         module.default();
@@ -349,13 +334,20 @@ async function loadAndStartGame() {
 }
 // 가위바위보 모달 열기
 rspIcon.addEventListener('dblclick', loadAndStartGame);
-// 가위바위보 모달 열기 끝
+
 // 가위바위보 모달 닫기
 rspCloseBtn.addEventListener('click', function () {
     rspModal.style.display = 'none';
     gameArea.style.display = 'none';
+    winnerText.style.display = 'none';
+    if (scissors.classList.contains('shaking')) {
+        scissors.classList.remove('shaking');
+    } else if (rock.classList.contains('shaking')) {
+        rock.classList.remove('shaking');
+    } else if (paper.classList.contains('shaking')) {
+        paper.classList.remove('shaking');
+    }
 });
-// 가위바위보 모달 닫기 끝
 // 가위바위보 창 확대
 rspFullScreenBtn.addEventListener('click', function () {
     fullScreenFunction(rspModal, 'rsp', '30px', '50px', '600px', '629px');
@@ -363,10 +355,174 @@ rspFullScreenBtn.addEventListener('click', function () {
 rspHeader.addEventListener('dblclick', function () {
     fullScreenFunction(rspModal, 'rsp', '30px', '50px', '600px', '629px');
 });
-// 가위바위보 창 확대 끝
 
 addDragFunctionality(rspModal, rspHeader);
-// 가위바위보 모달 관련 끝
+
+// 퀴즈 모달 관련
+const quizIcon = document.querySelector('.quiz-icon');
+const quizModal = document.querySelector('.quiz-modal');
+const quizCloseBtn = document.querySelector('.quiz-modal-header1-right-btn3');
+const quizFullScreenBtn = document.querySelector('.quiz-modal-header1-right-btn2');
+const quizHeader = document.querySelector('.quiz-modal-header1');
+const quizStartBtn = document.querySelector('.quiz-start-btn');
+const quizMainIn = document.querySelector('.quiz-main-in');
+const timerFill = document.querySelector(".timer-fill");
+const answerButtons = document.querySelectorAll(".quiz-btn");
+const quizStartBtnWrap = document.querySelector('.quiz-start-btn-wrap');
+const quizResults = document.querySelector('.quiz-results');
+const resultsCorrect = document.querySelector('.results-correct');
+const resultsIncorrect = document.querySelector('.results-incorrect');
+const quizRestartBtn = document.querySelector('.quiz-restart-btn');
+const o = document.querySelector('.o');
+const x = document.querySelector('.x');
+
+// 퀴즈 창 열기
+quizIcon.addEventListener('dblclick', function () {
+    quizModal.style.display = 'block';
+});
+// 퀴즈 창 닫기
+quizCloseBtn.addEventListener('click', function () {
+    quizModal.style.display = 'none';
+    resetQuiz();
+});
+// 퀴즈 창 전체화면
+quizFullScreenBtn.addEventListener('click', function () {
+    fullScreenFunction(quizModal, 'quiz', '70px', '120px', '550px', '600px');
+});
+quizHeader.addEventListener('dblclick', function () {
+    fullScreenFunction(quizModal, 'quiz', '70px', '120px', '550px', '600px');
+});
+
+addDragFunctionality(quizModal, quizHeader);
+
+// 퀴즈 시작 버튼
+quizStartBtn.addEventListener('click', function () {
+    quizStartBtnWrap.style.display = 'none';
+    quizMainIn.style.display = 'block';
+    showQuestion();
+});
+// 퀴즈 재시작 버튼
+quizRestartBtn.addEventListener('click', function () {
+    resetQuiz();
+    quizStartBtnWrap.style.display = 'flex';
+});
+// 퀴즈 메인
+const questions = [
+    {
+        question: "1 + 1 = ?",
+        answers: ["0", "2", "창문"],
+        correct: 2
+    },
+    {
+        question: "지구를 영어로?",
+        answers: ["Earth", "Jupiter", "Mars"],
+        correct: 0
+    },
+    {
+        question: "인구가 가장 많은 나라는?",
+        answers: ["중국", "인도", "미국"],
+        correct: 1
+    },
+    {
+        question: "새끼 손가락을 다른말로 하면?",
+        answers: ["약지", "중지", "소지"],
+        correct: 2
+    },
+    {
+        question: "태양계에서 가장 큰 행성은 무엇인가요?",
+        answers: ["화성", "금성", "목성"],
+        correct: 2
+    },
+];
+
+let questionIndex = 0;
+let correctIndex = 0;
+let inCorrectIndex = 0;
+let timerInterval;
+
+// 문제 보여주는 함수
+const showQuestion = () => {
+    const questionElement = document.querySelector(".question-text");
+
+    questionElement.textContent = questions[questionIndex].question;
+    answerButtons.forEach((btn, index) => {
+        btn.textContent = questions[questionIndex].answers[index];
+        btn.classList.remove("incorrect");
+        btn.classList.remove("correct");
+        btn.disabled = false;
+        btn.onclick = () => selectAnswer(index); // forEach로 인한 이벤트리스너 중복 방지
+        o.style.display = 'none';
+        x.style.display = 'none';
+    });
+
+    // 타이머 초기화
+    clearInterval(timerInterval);
+    timerFill.style.width = '100%';
+
+    // 타이머 시작
+    let timeLeft = 10;
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timerFill.style.width = `${(timeLeft / 10) * 100}%`;
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            selectAnswer(-1);
+        }
+    }, 1000);
+}
+
+// 답변 클릭시 실행 함수
+const selectAnswer = (index) => {
+    const correctNum = document.querySelector('.correct-num');
+    const leftNum = document.querySelector('.left-num');
+    const inCorrectNum = document.querySelector('.incorrect-num');
+
+    clearInterval(timerInterval);
+
+    answerButtons.forEach(btn => btn.disabled = true);
+
+    if (index === questions[questionIndex].correct) {
+        answerButtons[index].classList.add('correct');
+        o.style.display = 'block';
+        correctIndex++;
+    } else {
+        if (index !== -1) answerButtons[index].classList.add('incorrect');
+        x.style.display = 'block';
+        inCorrectIndex++;
+    }
+    leftNum.textContent = `${questions.length - 1 - questionIndex}개`;
+    correctNum.textContent = `${correctIndex}개`;
+    inCorrectNum.textContent = `${inCorrectIndex}개`
+
+    setTimeout(() => {
+        questionIndex++;
+        if (questionIndex < questions.length) {
+            showQuestion();
+        } else {
+            showResults();
+        }
+    }, 500);
+}
+// 퀴즈 리셋
+const resetQuiz = () => {
+    clearInterval(timerInterval);
+    questionIndex = 0;
+    correctIndex = 0;
+    inCorrectIndex = 0;
+    timerFill.style.width = '100%';
+    quizMainIn.style.display = 'none';
+    quizResults.style.display = 'none';
+    quizStartBtnWrap.style.display = 'flex';
+}
+// 결과 보기
+const showResults = () => {
+    quizMainIn.style.display = 'none';
+    quizResults.style.display = 'block';
+    resultsCorrect.textContent = `정답: ${correctIndex}개`;
+    resultsIncorrect.textContent = `오답: ${inCorrectIndex}개`;
+}
+
 // 공통 z-index
 let zIndexValue = 1;
 
@@ -386,7 +542,12 @@ rspModal.addEventListener('click', function () {
     zIndexValue++;
     rspModal.style.zIndex = zIndexValue;
 })
-// 공통 z-index 끝
+quizModal.addEventListener('click', function () {
+    zIndexValue++;
+    quizModal.style.zIndex = zIndexValue;
+});
+// 메인 화면 끝
+
 // 푸터
 function updateTime() {
     const now = new Date();
@@ -423,14 +584,14 @@ const linkToMemo = document.querySelector('.main-memo-link');
 startMenu.addEventListener('click', function () {
     startMenuModal.style.display === 'block' ? startMenuModal.style.display = 'none' : startMenuModal.style.display = 'block';
 });
-// 시작메뉴 열기 끝
+
 // 시작메뉴 외 클릭시 닫기
 document.addEventListener('click', function (event) {
     if (!startMenu.contains(event.target) && !startMenuModal.contains(event.target)) {
         startMenuModal.style.display = 'none';
     }
 });
-// 시작메뉴 외 클릭시 닫기 끝
+
 // 로그오프 모달
 turnOffBtn.addEventListener('click', function () {
     logOffModal.style.display = 'block';
@@ -447,20 +608,19 @@ logOffModalCancel.addEventListener('click', function () {
 turnOffComputer.addEventListener('click', function () {
     window.close();
 });
-// 로그오프 모달 끝
 
 // 인터넷 열기
 linkToInternet.addEventListener('click', function () {
     internetModal.style.display = 'block';
     startMenuModal.style.display = 'none';
 });
-// 인터넷 열기 끝
+
 // 메모장 열기
 linkToMemo.addEventListener('click', function () {
     memoModal.style.display = 'block';
     startMenuModal.style.display = 'none';
 });
-// 메모장 열기 끝
+
 //  내 컴퓨터 열기
 linkToComputer.forEach((icon) => {
     icon.addEventListener('click', function () {
@@ -468,8 +628,4 @@ linkToComputer.forEach((icon) => {
         startMenuModal.style.display = 'none';
     });
 })
-//  내 컴퓨터 열기 끝
-
-// 시작 메뉴 끝
 // 푸터 끝
-// 메인 화면 끝
