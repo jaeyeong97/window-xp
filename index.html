@@ -142,7 +142,7 @@
           <div class="icon-text">가위바위보</div>
         </div>
         <div class="icon quiz-icon">
-          <img src="img/quiz.png" alt="quiz" class="icon-img" />
+          <img src="img/q-blue.png" alt="quiz" class="icon-img" />
           <div class="icon-text">상식 퀴즈</div>
         </div>
       </div>
@@ -910,7 +910,7 @@
     <div class="quiz-modal modal-common">
       <div class="quiz-modal-header1 modal-common-header1">
         <div class="quiz-modal-header1-left modal-common-header1-left">
-          <img src="img/quiz.png" alt="quiz-logo" />
+          <img src="img/q.png" alt="quiz-logo" />
           <span>상식 퀴즈</span>
         </div>
         <div class="quiz-modal-header1-right modal-common-header1-right">
@@ -926,18 +926,83 @@
         </div>
       </div>
       <div class="quiz-main">
-        <div class="quiz-start-btn-wrap">
-          <img src="img/light.png" alt="light" />
-          <button class="quiz-start-btn">퀴즈 시작</button>
-          <img src="img/light.png" alt="light" />
+        <div class="quiz-login">
+          <div class="logo-wrap">
+            <img src="img/q.png" alt="quiz-logo" />
+            <span>상식 퀴즈</span>
+          </div>
+          <div class="quiz-login-container">
+            <div class="show-wrap">
+              <a href="#" id="show-login"><span>로그인</span></a>
+              <a href="#" id="show-signup"><span>회원가입</span></a>
+            </div>
+            <div class="form-container" id="login-form">
+              <form id="login">
+                <div class="form-group">
+                  <h5>아이디</h5>
+                  <input
+                    type="text"
+                    id="login-id"
+                    placeholder="아이디를 입력해주세요."
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <h5>비밀번호</h5>
+                  <input
+                    type="password"
+                    id="login-password"
+                    placeholder="비밀번호를 입력해주세요."
+                    required
+                  />
+                </div>
+                <button type="submit">로그인</button>
+                <div class="to-first">돌아가기</div>
+              </form>
+            </div>
+            <div class="form-container" id="signup-form">
+              <form id="signup">
+                <div class="form-group">
+                  <h5>아이디</h5>
+                  <input
+                    type="text"
+                    id="signup-id"
+                    placeholder="아이디를 입력해주세요."
+                    required
+                  />
+                  <span class="id-exist-alert alert"></span>
+                </div>
+                <div class="form-group">
+                  <h5>비밀번호</h5>
+                  <input
+                    type="password"
+                    id="signup-password"
+                    placeholder="비밀번호를 입력해주세요."
+                    required
+                  />
+                  <h5>비밀번호 확인</h5>
+                  <input
+                    type="password"
+                    id="signup-password-again"
+                    placeholder="비밀번호를 다시 입력해주세요."
+                    required
+                  />
+                  <span class="password-not-matched-alert alert"></span>
+                </div>
+                <button type="submit">생성하기</button>
+                <div class="to-first">돌아가기</div>
+              </form>
+            </div>
+          </div>
+          <button class="quiz-start-btn">시작</button>
         </div>
         <div class="quiz-main-in">
-          <img src="img/O.png" alt="o" class="o" />
-          <img src="img/X.png" alt="x" class="x" />
+          <div class="o"></div>
+          <div class="x"></div>
           <div class="quiz-top-menu">
             <div class="menu">
               <span>남은 개수</span>
-              <div class="left-num">5개</div>
+              <div class="left-num">10개</div>
             </div>
             <div class="menu menu-center">
               <span>맞은 개수</span>
@@ -964,6 +1029,7 @@
           </div>
         </div>
         <div class="quiz-results">
+          <img src="img/q.png" alt="quiz-logo" class="logo" />
           <h2>퀴즈 결과</h2>
           <div class="quiz-results-wrap">
             <img src="img/reward.png" alt="reward" />
