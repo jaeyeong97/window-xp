@@ -1,4 +1,4 @@
-let running;
+let running; // 모듈 내부에 선언하면 rsp.js가 호출될 때마다 새로운 running이 생겨서 clear 할 수 없음. 
 
 export default function () {
 

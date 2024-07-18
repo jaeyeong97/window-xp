@@ -91,7 +91,6 @@ const loginSuccessAnimation = () => {
 };
 // 로그인 화면 끝
 // 메인 화면
-
 const icons = document.querySelectorAll('.icon');
 
 //아이콘 클릭 이벤트
@@ -128,6 +127,7 @@ const fullScreenStates = {
     myComputer: false,
     rsp: false,
     quiz: false,
+    folder: false,
 };
 
 const fullScreenFunction = (modal, modalName, defaultTop, defaultLeft, defaultWidth, defaultHeight) => {
@@ -252,7 +252,7 @@ saveMemo.addEventListener('click', function () {
         iconImg.classList.add('icon-img');
 
         const iconText = document.createElement('div');
-        iconText.classList.add('icon-text');
+        iconText.classList.add('icon-text'); // 아이콘이름 부분
         iconText.textContent = `제목 없음${num}`;
 
         newIcon.appendChild(iconImg);
@@ -648,6 +648,31 @@ const showResults = () => {
     resultsIncorrect.textContent = `오답: ${inCorrectIndex}개`;
 }
 
+// 폴더 모달 관련
+const folderIcon = document.querySelector('.folder-icon');
+const folderModal = document.querySelector('.folder-modal');
+const folderHeader = document.querySelector('.folder-modal-header1');
+const folderFullScreenBtn = document.querySelector('.folder-modal-header1-right-btn2');
+const folderCloseBtn = document.querySelector('.folder-modal-header1-right-btn3');
+
+// 폴더 창 열기
+folderIcon.addEventListener('dblclick', function () {
+    folderModal.style.display = 'block';
+});
+// 폴더 창 닫기
+folderCloseBtn.addEventListener('click', function () {
+    folderModal.style.display = 'none';
+});
+// 폴더 창 전체화면
+folderFullScreenBtn.addEventListener('click', function () {
+    fullScreenFunction(folderModal, 'folder', '50px', '105px', '650px', '630px');
+});
+folderHeader.addEventListener('dblclick', function () {
+    fullScreenFunction(folderModal, 'folder', '50px', '105px', '650px', '630px');
+});
+
+addDragFunctionality(folderModal, folderHeader);
+// 폴더 모달 끝
 // 공통 z-index
 let zIndexValue = 1;
 
@@ -670,6 +695,10 @@ rspModal.addEventListener('click', function () {
 quizModal.addEventListener('click', function () {
     zIndexValue++;
     quizModal.style.zIndex = zIndexValue;
+});
+folderModal.addEventListener('click', function () {
+    zIndexValue++;
+    folderModal.style.zIndex = zIndexValue;
 });
 // 메인 화면 끝
 
