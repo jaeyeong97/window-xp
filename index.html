@@ -14,7 +14,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-    <script type="module" src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
     <title>Windows XP</title>
   </head>
   <body>
@@ -138,7 +138,7 @@
           <div class="icon-text">메모장</div>
         </div>
         <div class="icon rsp-icon">
-          <img src="img/scissors.png" alt="rsp-icon" class="icon-img" />
+          <img src="img/rock.png" alt="rsp-icon" class="icon-img" />
           <div class="icon-text">가위바위보</div>
         </div>
         <div class="icon quiz-icon">
@@ -868,7 +868,7 @@
         <div
           class="rock-scissors-paper-modal-header1-left modal-common-header1-left"
         >
-          <img src="img/scissors.png" alt="scissors-logo" />
+          <img src="img/rock.png" alt="scissors-logo" />
           <span>가위바위보</span>
         </div>
         <div
@@ -887,22 +887,33 @@
       </div>
       <div class="game-area"></div>
       <div class="game-before-start-wrap">
-        <span class="winner-text"></span>
+        <span class="game-title">팀을 선택해주세요!</span>
         <div class="img-wrap">
-          <div class="box">
+          <div class="box scissors-box">
             <img src="img/scissors.png" alt="scissors" class="scissors-img" />
             <span>가위!</span>
           </div>
-          <div class="box">
+          <div class="box rock-box">
             <img src="img/rock.png" alt="rock" class="rock-img" />
             <span>바위!</span>
           </div>
-          <div class="box">
+          <div class="box paper-box">
             <img src="img/paper.png" alt="paper" class="paper-img" />
             <span>보!</span>
           </div>
         </div>
         <button class="game-start">게임 시작</button>
+      </div>
+      <div class="game-result">
+        <span class="win">승리!</span>
+        <span class="lose">패배!</span>
+        <div class="img-wrap">
+            <img src="img/scissors.png" alt="scissors" class="scissors-result" />
+            <img src="img/rock.png" alt="rock" class="rock-result" />
+            <img src="img/paper.png" alt="paper" class="paper-result" />
+          </div>
+          <span class="winner-text"></span>
+        </div>
       </div>
     </div>
     <div class="quiz-modal modal-common">
@@ -1072,7 +1083,7 @@
               <span>페이지 설정(U)</span>
               <span>인쇄(P)</span>
               <div class="line"></div>
-              <span class="exit-my-computer">끝내기(X)</span>
+              <span class="exit-my-computer exit-folder">끝내기(X)</span>
             </div>
           </div>
           <div class="d">

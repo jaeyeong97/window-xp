@@ -1,4 +1,5 @@
 let running; // 모듈 내부에 선언하면 rsp.js가 호출될 때마다 새로운 running이 생겨서 clear 할 수 없음. 
+let selectedTeam = '';
 
 export default function () {
 
@@ -9,6 +10,9 @@ export default function () {
     const scissors = document.querySelector('.scissors-img');
     const rock = document.querySelector('.rock-img');
     const paper = document.querySelector('.paper-img');
+    const scissorsBox = document.querySelector('.scissors-box');
+    const rockBox = document.querySelector('.rock-box');
+    const paperBox = document.querySelector('.paper-box');
     const items = []; // 모든 아이템
     const itemSize = 50;
     const areaSize = 500;
@@ -21,17 +25,44 @@ export default function () {
 
     const rspArr = ['scissors', 'rock', 'paper'];
 
+    scissorsBox.addEventListener('click', function () {
+        selectedTeam = '가위';
+        scissorsBox.querySelector('span').style.display = 'block';
+        rockBox.querySelector('span').style.display = 'none';
+        paperBox.querySelector('span').style.display = 'none';
+        scissorsBox.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+        rockBox.style.backgroundColor = 'initial';
+        paperBox.style.backgroundColor = 'initial';
+    });
+
+    rockBox.addEventListener('click', function () {
+        selectedTeam = '바위';
+        scissorsBox.querySelector('span').style.display = 'none';
+        rockBox.querySelector('span').style.display = 'block';
+        paperBox.querySelector('span').style.display = 'none';
+        rockBox.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+        scissorsBox.style.backgroundColor = 'initial';
+        paperBox.style.backgroundColor = 'initial';
+    });
+
+    paperBox.addEventListener('click', function () {
+        selectedTeam = '보';
+        scissorsBox.querySelector('span').style.display = 'none';
+        rockBox.querySelector('span').style.display = 'none';
+        paperBox.querySelector('span').style.display = 'block';
+        paperBox.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+        scissorsBox.style.backgroundColor = 'initial';
+        rockBox.style.backgroundColor = 'initial';
+    });
+
     // 게임 시작 버튼
     gameStartBtn.addEventListener('click', function () {
+        if (!selectedTeam) {
+            alert('팀을 선택해주세요!');
+            return;
+        }
         beforeGameScreen.style.display = 'none';
         gameArea.style.display = 'block';
-        if (scissors.classList.contains('shaking')) {
-            scissors.classList.remove('shaking');
-        } else if (rock.classList.contains('shaking')) {
-            rock.classList.remove('shaking');
-        } else if (paper.classList.contains('shaking')) {
-            paper.classList.remove('shaking');
-        }
         for (let i = 0; i < 10; i++) {
             rspArr.forEach(rsp => createItem(rsp));
         }
@@ -162,21 +193,55 @@ export default function () {
     // 게임을 초기화하는 함수
     function resetGame(winner) {
         const winnerText = document.querySelector('.winner-text');
+        const winText = document.querySelector('.win');
+        const loseText = document.querySelector('.lose');
         gameArea.innerHTML = '';
         items.length = 0;
         gameArea.style.display = 'none';
         winnerText.style.display = 'block';
+        rockBox.querySelector('span').style.display = 'none';
+        paperBox.querySelector('span').style.display = 'none';
+        scissorsBox.querySelector('span').style.display = 'none';
+        rockBox.style.backgroundColor = 'initial';
+        scissorsBox.style.backgroundColor = 'initial';
+        paperBox.style.backgroundColor = 'initial';
         if (winner === '가위') {
-            winnerText.textContent = '가위 승리!';
-            scissors.classList.add('shaking');
+            if (selectedTeam === '가위') {
+                winText.style.display = 'block';
+                winnerText.textContent = '';
+            } else {
+                winText.style.display = 'none';
+                loseText.style.display = 'block';
+                winnerText.textContent = '가위가 승리하였습니다!';
+            }
+            rockBox.style.display = 'none';
+            paperBox.style.display = 'none';
         } else if (winner === '바위') {
-            winnerText.textContent = '바위 승리!';
-            rock.classList.add('shaking');
+            if (selectedTeam === '바위') {
+                winText.style.display = 'block';
+                winnerText.textContent = '';
+            } else {
+                winText.style.display = 'none';
+                loseText.style.display = 'block';
+                winnerText.textContent = '바위가 승리하였습니다!';
+            }
+            scissorsBox.style.display = 'none';
+            paperBox.style.display = 'none';
         } else if (winner === '보') {
-            winnerText.textContent = '보 승리!';
-            paper.classList.add('shaking');
+            if (selectedTeam === '보') {
+                winText.style.display = 'block';
+                winnerText.textContent = '';
+            } else {
+                winText.style.display = 'none';
+                loseText.style.display = 'block';
+                winnerText.textContent = '보가 승리하였습니다!';
+            }
+            rockBox.style.display = 'none';
+            scissorsBox.style.display = 'none';
         }
         beforeGameScreen.style.display = 'flex';
+        gameStartBtn.style.display = 'none';
+        selectedTeam = '';
     };
 
     // 0.1초마다 실행
