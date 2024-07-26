@@ -353,11 +353,6 @@ rspIcon.addEventListener('dblclick', function () {
     rockBox.querySelector('span').style.display = 'none';
     scissorsBox.querySelector('span').style.display = 'none';
     paperBox.querySelector('span').style.display = 'none';
-
-    // rockBox.style.display = 'block';
-    // paperBox.style.display = 'block';
-    // scissorsBox.style.display = 'block';
-    // gameStartBtn.style.display = 'block';
 });
 
 // 가위바위보 모달 닫기
@@ -371,13 +366,6 @@ rspCloseBtn.addEventListener('click', function () {
     running = null;
     gameArea.innerHTML = '';
     items.length = 0;
-
-    // rockBox.style.backgroundColor = 'initial';
-    // scissorsBox.style.backgroundColor = 'initial';
-    // paperBox.style.backgroundColor = 'initial';
-    // rockBox.querySelector('span').style.display = 'none';
-    // scissorsBox.querySelector('span').style.display = 'none';
-    // paperBox.querySelector('span').style.display = 'none';
 });
 
 // 가위바위보 창 확대
@@ -459,8 +447,8 @@ function moveItems() {
     items.forEach(item => {
         const top = parseFloat(item.style.top);
         const left = parseFloat(item.style.left);
-        let newTop = top + (Math.random() - 0.5) * 40; // 위아래 20px씩
-        let newLeft = left + (Math.random() - 0.5) * 40; // 좌우 20px씩
+        let newTop = top + (Math.random() - 0.5) * 30; // 위아래 15px씩
+        let newLeft = left + (Math.random() - 0.5) * 30; // 좌우 15px씩
         // 이동 위치가 게임영역 벗어나지않게
         if (newTop < 0) {
             newTop = 0;
@@ -581,12 +569,7 @@ function gameResult(winner) {
     paperResultImg.style.display = 'none';
     winText.style.display = 'none';
     loseText.style.display = 'none';
-    // rockBox.querySelector('span').style.display = 'none';
-    // paperBox.querySelector('span').style.display = 'none';
-    // scissorsBox.querySelector('span').style.display = 'none';
-    // rockBox.style.backgroundColor = 'initial';
-    // scissorsBox.style.backgroundColor = 'initial';
-    // paperBox.style.backgroundColor = 'initial';
+
     if (winner === '가위') {
         if (selectedTeam === '가위') {
             winText.style.display = 'block';
