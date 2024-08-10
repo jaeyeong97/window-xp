@@ -181,17 +181,46 @@ const internetCloseBtn = document.querySelector('.internet-modal-header1-right-b
 const internetFullScreenBtn = document.querySelector('.internet-modal-header1-right-btn2');
 const internetExit = document.querySelector('.exit-internet');
 
+let internetBar;
+
 // 인터넷 창 띄우기
 internetIcon.addEventListener('dblclick', function () {
     internetModal.style.display = 'block';
+
+    // 상태바 추가
+    const statusBar = document.querySelector('.status-bar');
+    const existCheck = statusBar.querySelector('.internet-bar');
+
+    if (!existCheck) {
+        internetBar = document.createElement('div');
+        internetBar.classList.add('bar', 'internet-bar');
+
+        const img = document.createElement('img');
+        img.src = 'img/internet_header_logo.png';
+        img.alt = 'internet';
+
+        const span = document.createElement('span');
+        span.textContent = 'InternetExplorer';
+
+        internetBar.appendChild(img);
+        internetBar.appendChild(span);
+        statusBar.appendChild(internetBar);
+
+        internetBar.addEventListener('click', function () {
+            increaseZIndex(internetModal);
+        });
+    }
+
 });
 
 // 인터넷 창 닫기
 internetCloseBtn.addEventListener('click', function () {
     internetModal.style.display = 'none';
+    internetBar.remove();
 });
 internetExit.addEventListener('click', function () {
     internetModal.style.display = 'none';
+    internetBar.remove();
 });
 
 // 인터넷 창 확대 
@@ -215,13 +244,46 @@ const textarea = document.querySelector('.textarea');
 const iconWrap = document.querySelector('.ms-icon-wrap');
 let num = 0;
 
+let memoBar;
+
+// 메모장 열기
+memoIcon.addEventListener('dblclick', function () {
+    memoModal.style.display = 'block';
+
+    // 상태바 추가
+    const statusBar = document.querySelector('.status-bar');
+    const existCheck = statusBar.querySelector('.memo-bar');
+
+    if (!existCheck) {
+        memoBar = document.createElement('div');
+        memoBar.classList.add('bar', 'memo-bar');
+
+        const img = document.createElement('img');
+        img.src = 'img/notepad.png';
+        img.alt = 'notepad';
+
+        const span = document.createElement('span');
+        span.textContent = 'Untitled - Notepad';
+
+        memoBar.appendChild(img);
+        memoBar.appendChild(span);
+        statusBar.appendChild(memoBar);
+
+        memoBar.addEventListener('click', function () {
+            increaseZIndex(memoModal);
+        });
+    }
+});
+
 // 메모장 창 닫기
 memoCloseBtn.addEventListener('click', function () {
     memoModal.style.display = 'none';
+    memoBar.remove();
     textarea.value = '';
 });
 memoExit.addEventListener('click', function () {
     memoModal.style.display = 'none';
+    memoBar.remove();
     textarea.value = '';
 });
 
@@ -231,11 +293,6 @@ memoFullScreenBtn.addEventListener('click', function () {
 });
 memoHeader.addEventListener('dblclick', function () {
     fullScreenFunction(memoModal, 'memo', '100px', '150px', '400px', '370px');
-});
-
-// 메모장 열기
-memoIcon.addEventListener('dblclick', function () {
-    memoModal.style.display = 'block';
 });
 
 // 메모장 저장
@@ -285,16 +342,43 @@ const myComputerFullScreenBtn = document.querySelector('.my-computer-modal-heade
 const myComputerHeader = document.querySelector('.my-computer-modal-header1');
 const myComputerExit = document.querySelector('.exit-my-computer');
 
+let myComputerBar;
 // 내 컴퓨터 창 열기
 myComputerIcon.addEventListener('dblclick', function () {
     myComputerModal.style.display = 'block';
+
+    // 상태바 추가
+    const statusBar = document.querySelector('.status-bar');
+    const existCheck = statusBar.querySelector('.my-computer-bar');
+
+    if (!existCheck) {
+        myComputerBar = document.createElement('div');
+        myComputerBar.classList.add('bar', 'my-computer-bar');
+
+        const img = document.createElement('img');
+        img.src = 'img/computer.png';
+        img.alt = 'computer';
+
+        const span = document.createElement('span');
+        span.textContent = 'My Computer';
+
+        myComputerBar.appendChild(img);
+        myComputerBar.appendChild(span);
+        statusBar.appendChild(myComputerBar);
+
+        myComputerBar.addEventListener('click', function () {
+            increaseZIndex(myComputerModal);
+        });
+    }
 });
 // 내 컴퓨터 창 닫기
 myComputerCloseBtn.addEventListener('click', function () {
     myComputerModal.style.display = 'none';
+    myComputerBar.remove();
 });
 myComputerExit.addEventListener('click', function () {
     myComputerModal.style.display = 'none';
+    myComputerBar.remove();
 });
 
 // 내 컴퓨터 창 확대
@@ -328,10 +412,34 @@ const items = []; // 모든 아이템
 const itemSize = 50;
 const areaSize = 500;
 
+let rspBar;
 // 가위바위보 모달 열기
 rspIcon.addEventListener('dblclick', function () {
     rspModal.style.display = 'flex';
     beforeGameScreen.style.display = 'flex';
+
+    const statusBar = document.querySelector('.status-bar');
+    const existCheck = statusBar.querySelector('.rsp-bar');
+
+    if (!existCheck) {
+        rspBar = document.createElement('div');
+        rspBar.classList.add('bar', 'rsp-bar');
+
+        const img = document.createElement('img');
+        img.src = 'img/rock.png';
+        img.alt = 'rsp';
+
+        const span = document.createElement('span');
+        span.textContent = 'RSP Game';
+
+        rspBar.appendChild(img);
+        rspBar.appendChild(span);
+        statusBar.appendChild(rspBar);
+
+        rspBar.addEventListener('click', function () {
+            increaseZIndex(rspModal);
+        });
+    }
 
     if (!running) {
         running = setInterval(() => {
@@ -366,6 +474,7 @@ rspCloseBtn.addEventListener('click', function () {
     running = null;
     gameArea.innerHTML = '';
     items.length = 0;
+    rspBar.remove();
 });
 
 // 가위바위보 창 확대
@@ -723,13 +832,38 @@ document.getElementById('login').addEventListener('submit', (event) => {
     }
 });
 
+let quizBar;
 // 퀴즈 창 열기
 quizIcon.addEventListener('dblclick', function () {
     quizModal.style.display = 'block';
+
+    const statusBar = document.querySelector('.status-bar');
+    const existCheck = statusBar.querySelector('.quiz-bar');
+
+    if (!existCheck) {
+        quizBar = document.createElement('div');
+        quizBar.classList.add('bar', 'quiz-bar');
+
+        const img = document.createElement('img');
+        img.src = 'img/q-blue.png';
+        img.alt = 'quiz';
+
+        const span = document.createElement('span');
+        span.textContent = 'Quiz Game';
+
+        quizBar.appendChild(img);
+        quizBar.appendChild(span);
+        statusBar.appendChild(quizBar);
+
+        quizBar.addEventListener('click', function () {
+            increaseZIndex(quizModal);
+        });
+    }
 });
 // 퀴즈 창 닫기
 quizCloseBtn.addEventListener('click', function () {
     quizModal.style.display = 'none';
+    quizBar.remove();
     resetQuiz();
 });
 // 퀴즈 창 전체화면
@@ -901,16 +1035,42 @@ const folderFullScreenBtn = document.querySelector('.folder-modal-header1-right-
 const folderCloseBtn = document.querySelector('.folder-modal-header1-right-btn3');
 const folderExit = document.querySelector('.exit-folder');
 
+let folderBar;
 // 폴더 창 열기
 folderIcon.addEventListener('dblclick', function () {
     folderModal.style.display = 'block';
+
+    const statusBar = document.querySelector('.status-bar');
+    const existCheck = statusBar.querySelector('.folder-bar');
+
+    if (!existCheck) {
+        folderBar = document.createElement('div');
+        folderBar.classList.add('bar', 'folder-bar');
+
+        const img = document.createElement('img');
+        img.src = 'img/com_f6.png';
+        img.alt = 'folder';
+
+        const span = document.createElement('span');
+        span.textContent = 'Publishing Folder';
+
+        folderBar.appendChild(img);
+        folderBar.appendChild(span);
+        statusBar.appendChild(folderBar);
+
+        folderBar.addEventListener('click', function () {
+            increaseZIndex(folderModal);
+        });
+    }
 });
 // 폴더 창 닫기
 folderCloseBtn.addEventListener('click', function () {
     folderModal.style.display = 'none';
+    folderBar.remove();
 });
 folderExit.addEventListener('click', function () {
     folderModal.style.display = 'none';
+    folderBar.remove();
 });
 // 폴더 창 전체화면
 folderFullScreenBtn.addEventListener('click', function () {
@@ -925,33 +1085,35 @@ addDragFunctionality(folderModal, folderHeader);
 // 공통 z-index
 let zIndexValue = 1;
 
-internetModal.addEventListener('click', function () {
+function increaseZIndex(modal) {
     zIndexValue++;
-    internetModal.style.zIndex = zIndexValue;
+    modal.style.zIndex = zIndexValue;
+}
+
+// 각 모달 클릭 시 z-index 증가
+internetModal.addEventListener('click', function () {
+    increaseZIndex(internetModal);
 });
 myComputerModal.addEventListener('click', function () {
-    zIndexValue++;
-    myComputerModal.style.zIndex = zIndexValue;
+    increaseZIndex(myComputerModal);
 });
 memoModal.addEventListener('click', function () {
-    zIndexValue++;
-    memoModal.style.zIndex = zIndexValue;
+    increaseZIndex(memoModal);
 });
 rspModal.addEventListener('click', function () {
-    zIndexValue++;
-    rspModal.style.zIndex = zIndexValue;
-})
+    increaseZIndex(rspModal);
+});
 quizModal.addEventListener('click', function () {
-    zIndexValue++;
-    quizModal.style.zIndex = zIndexValue;
+    increaseZIndex(quizModal);
 });
 folderModal.addEventListener('click', function () {
-    zIndexValue++;
-    folderModal.style.zIndex = zIndexValue;
+    increaseZIndex(folderModal);
 });
 // 메인 화면 끝
 
 // 푸터
+
+// 실시간
 function updateTime() {
     const now = new Date();
     let hours = now.getHours();
