@@ -180,6 +180,7 @@ const internetIcon = document.querySelector('.internet-icon');
 const internetCloseBtn = document.querySelector('.internet-modal-header1-right-btn3');
 const internetFullScreenBtn = document.querySelector('.internet-modal-header1-right-btn2');
 const internetExit = document.querySelector('.exit-internet');
+const internetUnderBar = document.querySelector('.internet-modal-header1-right-btn1');
 
 let internetBar;
 
@@ -208,6 +209,7 @@ internetIcon.addEventListener('dblclick', function () {
 
         internetBar.addEventListener('click', function () {
             increaseZIndex(internetModal);
+            internetModal.style.display = 'block';
         });
     }
 
@@ -221,6 +223,9 @@ internetCloseBtn.addEventListener('click', function () {
 internetExit.addEventListener('click', function () {
     internetModal.style.display = 'none';
     internetBar.remove();
+});
+internetUnderBar.addEventListener('click', function () {
+    internetModal.style.display = 'none';
 });
 
 // 인터넷 창 확대 
@@ -242,6 +247,8 @@ const memoExit = document.querySelector('.exit-memo');
 const saveMemo = document.querySelector('.save-memo');
 const textarea = document.querySelector('.textarea');
 const iconWrap = document.querySelector('.ms-icon-wrap');
+const memoUnderBar = document.querySelector('.memo-modal-header1-right-btn1');
+
 let num = 0;
 
 let memoBar;
@@ -271,6 +278,7 @@ memoIcon.addEventListener('dblclick', function () {
 
         memoBar.addEventListener('click', function () {
             increaseZIndex(memoModal);
+            memoModal.style.display = 'block';
         });
     }
 });
@@ -285,6 +293,9 @@ memoExit.addEventListener('click', function () {
     memoModal.style.display = 'none';
     memoBar.remove();
     textarea.value = '';
+});
+memoUnderBar.addEventListener('click', function () {
+    memoModal.style.display = 'none';
 });
 
 // 메모장 창 확대
@@ -341,8 +352,10 @@ const myComputerCloseBtn = document.querySelector('.my-computer-modal-header1-ri
 const myComputerFullScreenBtn = document.querySelector('.my-computer-modal-header1-right-btn2');
 const myComputerHeader = document.querySelector('.my-computer-modal-header1');
 const myComputerExit = document.querySelector('.exit-my-computer');
+const myComputerUnderBar = document.querySelector('.my-computer-modal-header1-right-btn1');
 
 let myComputerBar;
+
 // 내 컴퓨터 창 열기
 myComputerIcon.addEventListener('dblclick', function () {
     myComputerModal.style.display = 'block';
@@ -368,6 +381,7 @@ myComputerIcon.addEventListener('dblclick', function () {
 
         myComputerBar.addEventListener('click', function () {
             increaseZIndex(myComputerModal);
+            myComputerModal.style.display = 'block';
         });
     }
 });
@@ -379,6 +393,9 @@ myComputerCloseBtn.addEventListener('click', function () {
 myComputerExit.addEventListener('click', function () {
     myComputerModal.style.display = 'none';
     myComputerBar.remove();
+});
+myComputerUnderBar.addEventListener('click', function () {
+    myComputerModal.style.display = 'none';
 });
 
 // 내 컴퓨터 창 확대
@@ -407,12 +424,14 @@ const gameStartBtn = document.querySelector('.game-start');
 const scissorsBox = document.querySelector('.scissors-box');
 const rockBox = document.querySelector('.rock-box');
 const paperBox = document.querySelector('.paper-box');
+const rspUnderBar = document.querySelector('.rock-scissors-paper-modal-header1-right-btn1');
 
 const items = []; // 모든 아이템
 const itemSize = 50;
 const areaSize = 500;
 
 let rspBar;
+
 // 가위바위보 모달 열기
 rspIcon.addEventListener('dblclick', function () {
     rspModal.style.display = 'flex';
@@ -438,6 +457,7 @@ rspIcon.addEventListener('dblclick', function () {
 
         rspBar.addEventListener('click', function () {
             increaseZIndex(rspModal);
+            rspModal.style.display = 'flex';
         });
     }
 
@@ -475,6 +495,9 @@ rspCloseBtn.addEventListener('click', function () {
     gameArea.innerHTML = '';
     items.length = 0;
     rspBar.remove();
+});
+rspUnderBar.addEventListener('click', function () {
+    rspModal.style.display = 'none';
 });
 
 // 가위바위보 창 확대
@@ -727,6 +750,7 @@ const quizRestartBtn = document.querySelector('.quiz-restart-btn');
 const quizResults = document.querySelector('.quiz-results');
 const resultsCorrect = document.querySelector('.results-correct');
 const resultsIncorrect = document.querySelector('.results-incorrect');
+const quizUnderBar = document.querySelector('.quiz-modal-header1-right-btn1');
 const o = document.querySelector('.o');
 const x = document.querySelector('.x');
 
@@ -857,6 +881,7 @@ quizIcon.addEventListener('dblclick', function () {
 
         quizBar.addEventListener('click', function () {
             increaseZIndex(quizModal);
+            quizModal.style.display = 'block';
         });
     }
 });
@@ -866,6 +891,10 @@ quizCloseBtn.addEventListener('click', function () {
     quizBar.remove();
     resetQuiz();
 });
+quizUnderBar.addEventListener('click', function () {
+    quizModal.style.display = 'none';
+});
+
 // 퀴즈 창 전체화면
 quizFullScreenBtn.addEventListener('click', function () {
     fullScreenFunction(quizModal, 'quiz', '55px', '120px', '550px', '630px');
@@ -1034,8 +1063,10 @@ const folderHeader = document.querySelector('.folder-modal-header1');
 const folderFullScreenBtn = document.querySelector('.folder-modal-header1-right-btn2');
 const folderCloseBtn = document.querySelector('.folder-modal-header1-right-btn3');
 const folderExit = document.querySelector('.exit-folder');
+const folderUnderBar = document.querySelector('.folder-modal-header1-right-btn1');
 
 let folderBar;
+
 // 폴더 창 열기
 folderIcon.addEventListener('dblclick', function () {
     folderModal.style.display = 'block';
@@ -1060,6 +1091,7 @@ folderIcon.addEventListener('dblclick', function () {
 
         folderBar.addEventListener('click', function () {
             increaseZIndex(folderModal);
+            folderModal.style.display = 'block';
         });
     }
 });
@@ -1072,6 +1104,10 @@ folderExit.addEventListener('click', function () {
     folderModal.style.display = 'none';
     folderBar.remove();
 });
+folderUnderBar.addEventListener('click', function () {
+    folderModal.style.display = 'none';
+});
+
 // 폴더 창 전체화면
 folderFullScreenBtn.addEventListener('click', function () {
     fullScreenFunction(folderModal, 'folder', '50px', '105px', '650px', '630px');
