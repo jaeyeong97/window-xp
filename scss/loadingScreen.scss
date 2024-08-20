@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+$bg-color: #000000;
+$bar-text-hover-color: rgb(22, 96, 232);
+$quiz-color: #3b63ff;
+$placeholder-color: #c7c7c7;
+
+// 로딩 화면
+.loading-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-color;
+  overflow: hidden;
+  .loading-screen-center {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -65%);
+  }
+}
+
+.flex-1 {
+  width: 100%;
+  display: flex;
+  align-items: end;
+  .microsoft {
+    position: relative;
+    font-size: 35px;
+    margin-right: 50px;
+    .r {
+      position: absolute;
+      top: 0;
+      font-size: 12px;
+    }
+  }
+  .logo-img {
+    width: 250px;
+    margin-bottom: -30px;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+  .tm {
+    font-size: 12px;
+    margin-left: -30px;
+  }
+}
+
+.windows-wrap {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  .windows {
+    font-size: 100px;
+    font-weight: 600;
+    .r {
+      font-size: 12px;
+    }
+  }
+  .xp {
+    font-size: 70px;
+    font-weight: 600;
+    transform: translateY(-20px);
+    color: #ec661a;
+  }
+}
+
+.home-edition {
+  font-size: 55px;
+  margin-left: 20px;
+}
+
+.loading {
+  position: absolute;
+  bottom: -125px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  width: 270px;
+  height: 30px;
+  border: 2px solid #b1b3af;
+  overflow: hidden;
+  border-radius: 8px;
+  .loading-bar {
+    width: 15px;
+    height: 26px;
+    margin: 2px;
+    border-radius: 3px;
+    background-image: linear-gradient(
+      180deg,
+      #495b01,
+      #89d30a,
+      #828700,
+      #4b5d01
+    );
+    animation: loading 1.8s infinite steps(25);
+  }
+}
+
+.left-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+}
+
+.right-bottom {
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
+  img {
+    width: 100px;
+  }
+}

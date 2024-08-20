@@ -1,0 +1,319 @@
+@charset "utf-8";
+
+$bg-color: #000000;
+$bar-text-hover-color: rgb(22, 96, 232);
+$quiz-color: #3b63ff;
+$placeholder-color: #c7c7c7;
+
+// 인터넷 창
+.internet-modal {
+  top: 70px;
+  left: 120px;
+  width: 700px;
+  height: 500px;
+}
+
+.internet-modal-header2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  background: linear-gradient(
+    to right,
+    rgb(237, 237, 229) 0%,
+    rgb(237, 232, 205) 100%
+  );
+  .internet-modal-header2-left {
+    display: flex;
+    .d {
+      position: relative;
+      color: #000;
+      font-size: 12px;
+      padding: 3px 4px 0 4px;
+      &:hover {
+        color: #fff;
+        background-color: $bar-text-hover-color;
+      }
+      &:hover {
+        .depth {
+          display: flex;
+        }
+      }
+      .depth {
+        display: none;
+        position: absolute;
+        top: 23px;
+        left: 0;
+        width: 135px;
+        flex-direction: column;
+        background-color: #fff;
+        border: 1px solid gray;
+        box-shadow: rgb(100, 100, 100) 2px 2px 1px;
+        z-index: 1;
+        span {
+          padding: 3px 0 3px 7px;
+          font-size: 11px;
+          color: rgba(140, 140, 140, 0.71);
+          &:hover {
+            background-color: $bar-text-hover-color;
+          }
+        }
+        .exit-internet,
+        .save {
+          color: #000;
+          &:hover {
+            color: #fff;
+          }
+        }
+        .line {
+          width: calc(100% - 4px);
+          height: 1px;
+          margin-left: 2px;
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+  .internet-modal-header2-right {
+    width: 40px;
+    background-color: #fff;
+    img {
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      margin-left: 9px;
+    }
+  }
+}
+
+.internet-modal-header3 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  background: linear-gradient(
+    to right,
+    rgb(237, 237, 229) 0%,
+    rgb(237, 232, 205) 100%
+  );
+  .internet-modal-header3-back,
+  .internet-modal-header3-forward {
+    display: flex;
+    align-items: center;
+    img {
+      filter: grayscale(1);
+    }
+    .arrow-down1 {
+      margin-left: 5px;
+    }
+  }
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  .w22 {
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+  }
+  .internet-modal-header3-icon3,
+  .internet-modal-header3-icon6 {
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    padding-right: 5px;
+  }
+  .internet-modal-header3-icon4,
+  .internet-modal-header3-icon5,
+  .internet-modal-header3-icon7 {
+    display: flex;
+    align-items: center;
+    padding: 0 2px;
+  }
+  .internet-modal-header3-icon9 {
+    margin-right: 6px;
+  }
+  span {
+    font-size: 12px;
+    color: #000;
+  }
+}
+
+.internet-modal-header4 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-bottom: 3px;
+  background: linear-gradient(
+    to right,
+    rgb(237, 237, 229) 0%,
+    rgb(237, 232, 205) 100%
+  );
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: rgb(45, 45, 45) 0px -2px 3px -1px inset;
+  font-size: 12px;
+  color: #000;
+  .internet-modal-header4-address {
+    padding: 0 5px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .internet-modal-header4-address-bar {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+    background-color: #fff;
+    border: 1px solid rgba(122, 122, 255, 0.6);
+    .internet-modal-header4-address-bar-scroll-down {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      top: 2.5px;
+      right: 1.5px;
+    }
+    span {
+      margin-left: 3px;
+    }
+  }
+  .internet-modal-header4-go {
+    display: flex;
+    align-items: center;
+    padding: 0 7px;
+    width: 60px;
+    img {
+      width: 17px;
+      height: 17px;
+      margin-right: 2px;
+    }
+    span {
+      font-size: 11px;
+    }
+  }
+  .internet-modal-header4-links {
+    position: relative;
+    width: 60px;
+    span {
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: -3.5px;
+      left: -5px;
+      width: 1px;
+      height: 23.5px;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.internet-modal-main {
+  position: absolute;
+  top: 116px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 116px);
+  background-color: #fff;
+  overflow: auto;
+}
+
+.main-inner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 20px;
+  .google-logo {
+    width: 272px;
+    height: 92px;
+    margin-top: 180px;
+  }
+  .main-inner-input-wrap {
+    margin-top: 26px;
+    width: 586px;
+    height: 46px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px -1px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding: 0px 8px 0px 16px;
+    input {
+      width: 100%;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+    .record-btn {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+  }
+  .btn-box {
+    margin-top: 30px;
+    .btn {
+      padding: 0px 16px;
+      height: 36px;
+      margin: 0px 6px;
+      font-weight: 600;
+      font-size: 13px;
+      color: rgb(120, 120, 120);
+      border: 1px solid transparent;
+      background: rgb(242, 242, 242);
+      &:hover {
+        border-radius: 2px;
+        color: rgb(34, 34, 34);
+        background-color: rgb(248, 248, 248);
+        border: 1px solid rgb(198, 198, 198);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px -1px;
+      }
+    }
+  }
+}
+
+.pj-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  .pj {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px;
+    text-decoration: none;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+    }
+    .img-wrap {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.1);
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 27px;
+        height: 27px;
+      }
+      .wc {
+        width: 23px;
+        height: 23px;
+      }
+      .ulsan_logo {
+        height: 23px;
+      }
+    }
+    span {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #000;
+    }
+  }
+}

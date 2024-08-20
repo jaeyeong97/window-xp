@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+$bg-color: #000000;
+$bar-text-hover-color: rgb(22, 96, 232);
+$quiz-color: #3b63ff;
+$placeholder-color: #c7c7c7;
+
+// 폴더
+.folder-modal {
+  top: 50px;
+  left: 105px;
+  width: 650px;
+  height: 630px;
+  .my-computer-modal-main-right {
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    font-size: 12px;
+  }
+  .doc-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 0 15px 15px;
+    box-sizing: border-box;
+    .box {
+      display: flex;
+      align-items: center;
+      &:hover {
+        span {
+          text-decoration: underline;
+        }
+      }
+      img {
+        width: 45px;
+        height: 45px;
+        margin-right: 8px;
+      }
+      span {
+        font-size: 12px;
+      }
+      .ulsan_logo {
+        height: 40px;
+      }
+    }
+  }
+}
