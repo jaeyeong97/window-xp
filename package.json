@@ -2,8 +2,8 @@
   "name": "window--xp",
   "version": "1.0.0",
   "scripts": {
-    "build": "sass scss/styles.scss:css/styles.css",
-    "watch:sass": "sass --watch scss/styles.scss:css/styles.css"
+    "build": "sass scss/common.scss:css/common.css sass scss/folderModal.scss:css/folderModal.css sass scss/internetModal.scss:css/internetModal.css sass scss/loadingScreen.scss:css/loadingScreen.css sass scss/loginScreen.scss:css/loginScreen.css sass scss/mainScreen.scss:css/mainScreen.css sass scss/memoScreen.scss:css/memoScreen.css sass scss/myComputerModal.scss:css/myComputerModal.css sass scss/quizModal.scss:css/quizModal.css sass scss/rspModal.scss:css/rspModal.css",
+    "watch:sass": "sass --watch scss/common.scss:css/common.css sass --watch scss/folderModal.scss:css/folderModal.css sass --watch scss/internetModal.scss:css/internetModal.css sass --watch scss/loadingScreen.scss:css/loadingScreen.css sass --watch scss/loginScreen.scss:css/loginScreen.css sass --watch scss/mainScreen.scss:css/mainScreen.css sass --watch scss/memoScreen.scss:css/memoScreen.css sass --watch scss/myComputerModal.scss:css/myComputerModal.css sass --watch scss/quizModal.scss:css/quizModal.css sass --watch scss/rspModal.scss:css/rspModal.css"
   },
   "devDependencies": {
     "sass": "^1.32.0"
