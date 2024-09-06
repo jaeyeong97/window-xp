@@ -25,7 +25,7 @@ document.addEventListener('click', () => {
     });
 });
 
-// 창 띄우기 공통
+// 모달 전체화면
 const fullScreenStates = {
     internet: false,
     memo: false,
