@@ -40,7 +40,7 @@ const fullScreenFunction = (modal, modalName, defaultTop, defaultLeft, defaultWi
     if (!fullScreenStates[modalName]) {
         modal.style.top = '0';
         modal.style.left = '0';
-        modal.style.width = '100%';
+        modal.style.width = 'calc(100% - 5px)';
         modal.style.height = 'calc(100% - 35px)';
         fullScreenStates[modalName] = true;
     } else {
