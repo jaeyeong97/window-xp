@@ -86,9 +86,9 @@ document.getElementById('signup').addEventListener('submit', (event) => {
 
     localStorage.setItem('users', JSON.stringify(users));
 
-    alert('회원가입 성공!');
+    alert('회원가입에 성공하였습니다. 로그인 페이지로 돌아갑니다.');
 
-    // 회원가입 성공 후 입력칸, alert 비우기
+    // 회원가입 성공 후 입력칸 비우기
     document.getElementById('signup-id').value = '';
     document.getElementById('signup-password').value = '';
     document.getElementById('signup-password-again').value = '';
@@ -111,7 +111,6 @@ document.getElementById('login').addEventListener('submit', (event) => {
     const user = users.find((user) => user.id === id && user.password === password);
 
     if (user) {
-        alert('로그인 성공!');
         loginForm.style.display = 'none';
         quizStartBtn.style.display = 'block';
     } else {
