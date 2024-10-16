@@ -30,6 +30,7 @@ rspIcon.addEventListener('dblclick', function () {
     const statusBar = document.querySelector('.status-bar');
     const existCheck = statusBar.querySelector('.rsp-bar');
 
+    // 하단 상태창에 추가
     if (!existCheck) {
         rspBar = document.createElement('div');
         rspBar.classList.add('bar', 'rsp-bar');
@@ -98,14 +99,17 @@ rspHeader.addEventListener('dblclick', function () {
     fullScreenFunction(rspModal, 'rsp', '30px', '50px', '600px', '629px');
 });
 
+// 이미지 생성 및 충돌시 경로 변경용
 const images = {
     scissors: '../img/scissors.png',
     rock: '../img/rock.png',
     paper: '../img/paper.png'
 };
 
+// 아이템 생성
 const rspArr = ['scissors', 'rock', 'paper'];
 
+// 가위팀 선택시
 scissorsBox.addEventListener('click', function () {
     selectedTeam = '가위';
     scissorsBox.querySelector('span').style.display = 'block';
@@ -115,7 +119,7 @@ scissorsBox.addEventListener('click', function () {
     rockBox.style.backgroundColor = 'initial';
     paperBox.style.backgroundColor = 'initial';
 });
-
+// 바위팀 선택시
 rockBox.addEventListener('click', function () {
     selectedTeam = '바위';
     scissorsBox.querySelector('span').style.display = 'none';
@@ -125,7 +129,7 @@ rockBox.addEventListener('click', function () {
     scissorsBox.style.backgroundColor = 'initial';
     paperBox.style.backgroundColor = 'initial';
 });
-
+// 보팀 선택시
 paperBox.addEventListener('click', function () {
     selectedTeam = '보';
     scissorsBox.querySelector('span').style.display = 'none';
@@ -144,7 +148,7 @@ gameStartBtn.addEventListener('click', function () {
     }
     beforeGameScreen.style.display = 'none';
     gameArea.style.display = 'block';
-
+    // 각 아이템 10개씩 생성
     for (let i = 0; i < 10; i++) {
         rspArr.forEach(rsp => createItem(rsp));
     }
@@ -155,7 +159,7 @@ function createItem(rsp) {
     const item = document.createElement('div');
     item.classList.add(rsp); // 클래스네임 설정
     item.style.backgroundImage = `url('${images[rsp]}')`;
-    // 랜덤한 위치에 아이템 배치
+    // 게임 영역 안넘어가고 랜덤한 위치에 아이템 배치
     item.style.top = `${Math.random() * (areaSize - itemSize)}px`;
     item.style.left = `${Math.random() * (areaSize - itemSize)}px`;
     gameArea.appendChild(item);
