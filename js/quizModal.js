@@ -50,6 +50,12 @@ toFirst.forEach((btn) => {
     })
 })
 
+// 임시 아이디 및 비밀번호
+const initialUsers = [
+    { id: 'id123', password: 'pw123' }
+];
+localStorage.setItem('users', JSON.stringify(initialUsers));
+
 // 회원가입
 document.getElementById('signup').addEventListener('submit', (event) => {
     event.preventDefault();
